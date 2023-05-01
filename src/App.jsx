@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Member from "./pages/Member";
 import Address from "./pages/Address";
 import "./App.scss";
+import DetailFilmPage from "./pages/DetailFIlmPage";
 
 function App() {
   return (
@@ -14,13 +15,14 @@ function App() {
       <div className="w-[100%]  h-[100vh]">
         <Navbar />
 
-        <div className="w-[100%]">
+        <div className="w-[100%] flex justify-center items-center">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/event" element={<Event />} />
             <Route path="/login" element={<Login />} />
             <Route path="/address" element={<Address />} />
             <Route path="/member" element={<Member />} />
+            <Route path="/detail" element={<DetailFilmPage />} />
           </Routes>
         </div>
       </div>

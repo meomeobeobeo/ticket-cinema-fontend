@@ -1,0 +1,30 @@
+.custom-button:hover {
+    border-color: #FDE68A !important; /* Change the border color to red when hovering */
+    color: #FDE68A !important;
+}
+.horizontal-select {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+.billCard {
+    width: 320px;
+    border:#F5F7FA solid 1px ;
+    padding: 4px;
+   
+    
+    .ant-card-head{
+        display: flex;
+        justify-content: flex-start!important;
+        color: #F5F7FA;
+        text-align: left;
+        padding: 0;
+        font-size: 20px;
+    }
+    .ant-card-body{
+        padding: 8px 0px;
+        margin: 8px 0px;
+
+    }
+}
+  

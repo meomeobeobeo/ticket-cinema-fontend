@@ -46,8 +46,8 @@ const Slider = () => {
             onVisibleChange: (vis) => setVisible(vis),
           }}
         >
-          {listPicture.map((picture) => {
-            return <Image src={picture.url} />;
+          {listPicture.map((picture , index) => {
+            return <Image key={index} src={picture.url} />;
           })}
         </Image.PreviewGroup>
       </div>
