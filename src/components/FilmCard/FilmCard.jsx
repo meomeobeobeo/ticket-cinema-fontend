@@ -12,7 +12,7 @@ const FilmCard = () => {
       cover={
         <img
           alt="example"
-          src="src/assets/image/pic8.jpg"
+          src="src/assets/image/pic1.jpg"
         />
       }
     >

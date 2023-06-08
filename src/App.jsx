@@ -3,13 +3,26 @@ import Navbar from "./layout/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Event from "./pages/Event";
-import Login from "./pages/Login";
+
 import Member from "./pages/Member";
 import Address from "./pages/Address";
 import "./App.scss";
 import DetailFilmPage from "./pages/DetailFIlmPage";
-
+import Auth from "./pages/Auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUserData } from "./redux/authSlice";
 function App() {
+  // get user data in local storage
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const authData = JSON.parse(localStorage.getItem("profile"));
+    dispatch(setUserData(authData));
+  }, []);
+
   return (
     <>
       <div className="w-[100%]  h-[100vh]">
@@ -19,13 +32,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/event" element={<Event />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Auth />} />
             <Route path="/address" element={<Address />} />
             <Route path="/member" element={<Member />} />
             <Route path="/detail" element={<DetailFilmPage />} />
           </Routes>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
