@@ -14,13 +14,32 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUserData } from "./redux/authSlice";
+import * as api from './api/index'
+import { filmsSlice } from "./redux/FilmsSlice";
 function App() {
   // get user data in local storage
   const dispatch = useDispatch();
+  const [isLoading ,setIsLoading] = useState(false)
+ 
+
+
+  const loadingData = async ()=>{
+    let data = await api.getFilmInformation()
+    
+    dispatch(filmsSlice.actions.saveFilmsState(data.data))
+
+
+  }
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("profile"));
     dispatch(setUserData(authData));
+
+    loadingData()
+
+
+
+
   }, []);
 
   return (
@@ -35,7 +54,7 @@ function App() {
             <Route path="/login" element={<Auth />} />
             <Route path="/address" element={<Address />} />
             <Route path="/member" element={<Member />} />
-            <Route path="/detail" element={<DetailFilmPage />} />
+            <Route path={`detail/:filmId`}   element={<DetailFilmPage />} />
           </Routes>
         </div>
       </div>

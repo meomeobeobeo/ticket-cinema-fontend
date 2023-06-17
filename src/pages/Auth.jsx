@@ -41,7 +41,7 @@ const Auth = () => {
     setFormData({});
   };
 
-  console.log(formData);
+  
 
   return (
     <div className="w-full bg-[#04192e] flex justify-center items-center mt-[60px] h-[100vh]">

@@ -12,7 +12,7 @@ const Navbar = () => {
   
   const userData = useSelector((state) => state.auth.authData?.user);
   const dispatch = useDispatch()
-  console.log(userData);
+  
   const items = [
     {
       key: "1",

@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "../components/Slider/Slider";
 import { Col, Divider, Row, Typography } from "antd";
-import FilmCard from "../components/FilmCard/FilmCard";
-import Footer from "../components/Footer/Footer";
-import {Link} from "react-router-dom";
 
+import Footer from "../components/Footer/Footer";
+import { Link } from "react-router-dom";
+import dataTest from "./data.json";
+import MovieItem from "../components/MovieItem/MovieItem";
+import { useDispatch, useSelector } from "react-redux";
+import * as api from "../api/index"
+import { filmsSlice, saveFilmsState } from "../redux/FilmsSlice";
 const Home = () => {
+
+
+  
+
+
+
+ 
+
+
+  const datatest = useSelector(state => state.films?.films)
+  console.log(datatest)
+
+
+
+  
+
+
+
+
+
+
   return (
     <div className="w-full mt-[64px] flex flex-col justify-center items-center">
       <div className="w-[90%]">
@@ -19,26 +44,14 @@ const Home = () => {
         </Typography>
       </div>
       <Row gutter={[16, 16]}>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <Link to="/detail">
-            <FilmCard />
-          </Link>
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <FilmCard />
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <FilmCard />
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <FilmCard />
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <FilmCard />
-        </Col>{" "}
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <FilmCard />
-        </Col>
+        {datatest?.map((data, i) => {
+          return (
+            <Col key={i} xs={24} sm={12} md={8} lg={8}>
+                <MovieItem  phimItem={data} />
+            </Col>
+          );
+        })}
+       
       </Row>
       <Footer />
     </div>
