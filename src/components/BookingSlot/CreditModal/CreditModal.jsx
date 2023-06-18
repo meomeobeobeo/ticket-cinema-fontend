@@ -19,28 +19,21 @@ export default class CreditModal extends Component {
     this.setState({ [name]: value });
   };
   render() {
+    const { cvc, expiry, focus, name, number } = this.state;
     return (
       <div>
         <div
-          className="CreditModal modal fade bd-example-modal-lg"
+          className="CreditModal w-full"
           id="CreditModal"
           tabIndex={-1}
           role="dialog"
           aria-labelledby="modelTitleId"
           aria-hidden="true"
         >
-          <div className="modal-dialog modal-lg" role="document">
+          <div className="modal-dialog modal-lg w-full" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Thanh toán</h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
               </div>
               <div className="modal-body">
                 <div id="PaymentForm">
@@ -106,15 +99,25 @@ export default class CreditModal extends Component {
                 </div>
               </div>
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn-style draw-border"
-                  onClick={() => {
-                    this.props.datVe();
-                  }}
-                >
-                  Đặt vé
-                </button>
+                <div className="w-[200px]">
+                  <button
+                    type="button"
+                    className="secondaryBtn"
+                    onClick={() => {
+                      this.props.datVe({
+                        creditForm: {
+                          cvc: cvc,
+                          expiry: expiry,
+                          focus: focus,
+                          name: name,
+                          number: number,
+                        },
+                      });
+                    }}
+                  >
+                    Đặt vé
+                  </button>
+                </div>
               </div>
             </div>
           </div>

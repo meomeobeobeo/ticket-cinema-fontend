@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
-import ChooseSlot from "../components/BookingSlot/ChooseSlot/ChooseSlot";
-import Checkout from "../components/BookingSlot/Checkout/Checkout";
-import { qLyPhimService } from "../services/QuanLyPhimServices";
+import ChooseSlot from "./ChooseSlot/ChooseSlot";
+import Checkout from "./Checkout/Checkout";
+// import { qLyPhimService } from "../services/QuanLyPhimServices";/
 export default function BookingTicket(props) {
   let [thongTinPhongVe, setThongTinPhongVe] = useState({});
   let [danhSachGheDangDat, setDanhSachGheDangDat] = useState([]);

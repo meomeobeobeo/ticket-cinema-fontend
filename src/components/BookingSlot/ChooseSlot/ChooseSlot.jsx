@@ -1,8 +1,39 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, memo, useEffect, useState } from "react";
 import "./ChooseSlot.scss";
-import swal from "sweetalert";
-export default function ChooseSlot(props) {
-  let { thongTinPhongVe, danhSachGheDangDat, setDanhSachGheDangDat } = props;
+import * as api from "../../../api/index";
+import Counter from "./Counter";
+import { Spin } from "antd";
+
+export default function ChooseSlot({
+  danhSachGheDangDat,
+  setDanhSachGheDangDat,
+  filmManagerId,
+}) {
+  const [thongTinPhongVe, setThongTinPhongVe] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchSeatInfor = async (filmManagerId) => {
+    let data = (await api.getSeatDataBaseOnFilmManagerId({ id: filmManagerId }))
+      .data;
+    console.log(data);
+
+    setThongTinPhongVe(data);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (filmManagerId) {
+      fetchSeatInfor(filmManagerId);
+    }
+  }, [filmManagerId]);
+  if (isLoading) {
+    return (
+      <div className="w-[90%] mt-[64px] h-[100vh] flex flex-col justify-center items-center">
+        <Spin size="large" />
+      </div>
+    );
+  }
+
   const renderGhe = (daDat, ghe) => {
     if (daDat) {
       return <i className="fa fa-couch slot__item item--picked"></i>;
@@ -21,7 +52,8 @@ export default function ChooseSlot(props) {
       }
       return (
         <i
-          className={`fa fa-couch slot__item ${cssGheVip} ${cssGheDangDat}`}
+          style={{ fontSize: "20px" }}
+          className={`fa fa-couch text-xs slot__item ${cssGheVip} ${cssGheDangDat}`}
           onClick={() => {
             datGhe(ghe);
           }}
@@ -46,33 +78,13 @@ export default function ChooseSlot(props) {
       return <Fragment key={index}>{renderGhe(ghe.daDat, ghe)}</Fragment>;
     });
   };
-  const [counter, setCounter] = useState(60 * 5);
-  useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    if (counter === 0) {
-      swal("Bạn đã chọn vé quá lâu! Ahihi", {
-        icon: "error",
-      });
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    }
-  }, [counter]);
+
   return (
-    <div className="checkOut__left col-md-9 col-sm-12 p-0">
+    <div className="checkOut__left md:col-span-9 sm:col-span-12 p-0">
       <div className="bookSlot">
-        <div
-          className="poster__film"
-          style={{
-            backgroundImage: `url('${thongTinPhongVe.thongTinPhim?.hinhAnh}')`,
-          }}
-        >
-          <div className="overlay" />
-        </div>
         <div className="bookSlot__content">
           <div className="theater__info d-flex justify-content-between">
-            <div className="theater__img d-flex bg-light">
-              <img src={thongTinPhongVe.thongTinPhim?.hinhAnh} alt="hinhanh" />
+            <div className="theater__img d-flex ">
               <div className="theater__name">
                 <span className="name">
                   <span className="subname">
@@ -82,11 +94,14 @@ export default function ChooseSlot(props) {
                 <p className="showtime">
                   Giờ chiếu: {thongTinPhongVe.thongTinPhim?.gioChieu}
                 </p>
+                <p className="subname">
+                  Tên phim : {thongTinPhongVe.thongTinPhim?.tenPhim}
+                </p>
               </div>
             </div>
             <div className="timeKeepSlot">
               <p className="title__text">thời gian giữ ghế</p>
-              <span className="time">{counter + "s"}</span>
+              <Counter />
             </div>
           </div>
           <div className="chooseSlot">
@@ -98,20 +113,20 @@ export default function ChooseSlot(props) {
                 <div className="slot__row">{renderDanhSachGhe()}</div>
               </div>
             </div>
-            <div className="slot__detail row">
-              <div className="col-md-3 col-sm-6 col-xs-6">
+            <div className="slot__detail flex flex-row justify-around items-center">
+              <div className="flex gap-2 justify-center items-center">
                 <i className="fa fa-couch item--picking" />
                 <span className="slot__text">Ghế đang chọn</span>
               </div>
-              <div className="col-md-3 col-sm-6 col-xs-6">
+              <div className="flex gap-2 justify-center items-center">
                 <i className="fa fa-couch item--picked" />
                 <span className="slot__text">Ghế đã chọn</span>
               </div>
-              <div className="col-md-3 col-sm-6 col-xs-6">
+              <div className="flex gap-2 justify-center items-center">
                 <i className="fa fa-couch item--regular" />
                 <span className="slot__text">Ghế chưa chọn</span>
               </div>
-              <div className="col-md-3 col-sm-6 col-xs-6">
+              <div className="flex gap-2 justify-center items-center">
                 <i className="fa fa-couch item--vip" />
                 <span className="slot__text">Ghế Vip</span>
               </div>

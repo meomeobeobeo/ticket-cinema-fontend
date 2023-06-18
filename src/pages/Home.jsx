@@ -20,7 +20,7 @@ const Home = () => {
 
 
   const datatest = useSelector(state => state.films?.films)
-  console.log(datatest)
+
 
 
 

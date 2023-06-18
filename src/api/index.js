@@ -28,3 +28,11 @@ export const getDetailFilms = ({ id }) => {
 export const getDataBaseOnFilmId = ({ id }) => {
   return API.post(`/filmManager/getDataBaseOnFilmId`, { filmId: id });
 };
+export const getSeatDataBaseOnFilmManagerId = ({ id }) => {
+  return API.get(`/filmManager/getSeatDataBaseOnFilmManagerId/${id}`);
+};
+
+export const createNewBill = ({formData})=>{
+  return API.post(`/bills/createNewBills`,formData)
+}
+

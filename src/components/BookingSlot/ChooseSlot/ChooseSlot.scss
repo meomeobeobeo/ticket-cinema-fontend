@@ -2,6 +2,7 @@
 .checkOut__left {
   .header {
     display: flex;
+    font-size: 20px !important;
     justify-content: space-between;
     box-shadow: -5px 5px 11px -2px $color-gray-3;
     @include responsive_mobile {
@@ -162,7 +163,7 @@
             .name {
               color: $color-gray-2;
               .subname {
-                color: $color-black-0;
+                color: #fff;
               }
             }
             .showtime {
