@@ -6,11 +6,15 @@ import CreditModal from "../CreditModal/CreditModal";
 import { useSelector } from "react-redux";
 import * as api from "../../../api/index"
 import { toast } from "react-toastify";
-const Perchase = ({ danhSachGheDangDat , filmManagerId }) => {
+import { useNavigate } from "react-router-dom";
 
+
+const Perchase = (props) => {
+  let { danhSachGheDangDat , filmManagerId , swal } = props
 
     const [openCreditModal , setOpenCreditModal] = useState(false)
     const userData = useSelector((state) => state.auth.authData?.user);
+    const navigate = useNavigate()
 
 
 
@@ -32,7 +36,7 @@ const Perchase = ({ danhSachGheDangDat , filmManagerId }) => {
                 daDat : true
             }
         })
-
+        
 
         let formData = {
             filmManagerId : filmManagerId,
@@ -41,13 +45,28 @@ const Perchase = ({ danhSachGheDangDat , filmManagerId }) => {
             totalCost : renderTongTien(),
             
         }
-        console.log(formData)
-        let response = await api.createNewBill({formData : formData})
-        if(response.data.errorCode === 0){
-            toast.success("Thanh toán thành công")
-        }else {
-            toast.error("Thanh toán thất bại.")
+        if(!formData.userId){
+          toast.error("Please sign in for perchase.")
+          navigate('/login', {replace : true})
+          
+          return
+          
         }
+        
+        let req = await toast.promise(api.createNewBill({formData : formData}), {
+          pending: "Perchase pending",
+          success: "Perchase success",
+          error: "Perchase error",
+        });
+       
+        setOpenCreditModal(false)
+        setTimeout(() => {
+          
+          window.location.reload()
+        }, 5000);
+      
+
+      
     }
 
     const handleModalClose = ()=>{
@@ -179,10 +198,10 @@ const Perchase = ({ danhSachGheDangDat , filmManagerId }) => {
         closeAfterTransition
         className=""
       >
-        <CreditModal datVe = {datVe}  />
+        <CreditModal setOpenCreditModal = {setOpenCreditModal} datVe = {datVe}  />
       </Modal>
     </Card>
   );
 };
 
-export default Perchase;
+export default Perchase

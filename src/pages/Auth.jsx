@@ -37,7 +37,14 @@ const Auth = () => {
     setFormData({});
   };
   const handleSignUp = async () => {
-    let req = await api.signUp({ formData: formData });
+  
+    let req = await toast.promise(api.signUp({ formData: formData }), {
+      pending: "Signup pending",
+      success: "Signup success",
+      error: "Signup failed",
+    });
+    setIsSignIn(true);
+
     setFormData({});
   };
 

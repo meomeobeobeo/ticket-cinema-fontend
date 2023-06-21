@@ -41,7 +41,7 @@ const Navbar = () => {
       {/* control */}
       <div className="flex flex-row h-[60px] ml-4">
         <Link
-          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg"
+          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg text-decoration-none"
           to="/"
         >
           Movie
@@ -49,18 +49,18 @@ const Navbar = () => {
 
         <Link
           to="/address"
-          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg"
+          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg text-decoration-none"
         >
           Address theater
         </Link>
-        <Link
+        {/* <Link
           to="/member"
-          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg"
+          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg text-decoration-none"
         >
           Member
-        </Link>
+        </Link> */}
         <Link
-          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg"
+          className="px-8 justify-center flex items-center hover:bg-[#ccc] cursor-pointer rounded-lg text-decoration-none"
           to="/event"
         >
           Event

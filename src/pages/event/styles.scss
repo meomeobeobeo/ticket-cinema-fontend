@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a:hover {
+  color: var(--pink) !important;
+}
+
+.app {
+  display: flex;
+  overflow: hidden;
+}
+
+.logo {
+  margin: 0 0 0 15px;
+}
+.logo a {
+  color: white;
+}
+
+.loader {
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exchanges {
+  min-height: 91vh;
+}
+
+@media screen and (max-width: 1300px) {
+  .main {
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .main {
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .main {
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  p {
+    margin: auto 8px;
+  }
+  h3 {
+    margin: auto 4px;
+  }
+  .app {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .navbar {
+    flex: 1;
+  }
+
+  .main {
+    flex: 1;
+    margin-top: 90px;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+
+  .nav-container {
+    height: 8vh;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background-color: var(--bgSecondary);
+  }
+
+  .menu-control-container {
+    display: block !important;
+  }
+
+  .ant-menu {
+    position: absolute;
+    right: 0px;
+  }
+  .home-title {
+    font-size: 1.4rem !important;
+  }
+  .show-more {
+    font-size: 1.3rem !important;
+  }
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.stats-container h2 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-top: 20px;
+  color: var(--pink);
+}
+
+.stats {
+  font-weight: 800;
+}
+
+.select-news {
+  width: 180px;
+}
+.news-card {
+  min-height: 300px !important;
+}
+.news-image-container {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.news-title {
+  width: 70%;
+}
+
+.news-image-container .img {
+  width: 100px;
+  height: 100px;
+}
+.news-card p {
+  color: black;
+  margin: 10px 0px !important;
+}
+.provider-container {
+  display: flex;
+  justify-content: space-between;
+}
+.provider-name {
+  margin-left: 10px;
+}
+
+.home-heading-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+.show-more {
+  margin-top: 0px !important;
+}
+.exchange-image {
+  margin: 0px 10px !important;
+}
+.search-crypto {
+  margin: 20px auto 30px auto;
+  width: 250px;
+}

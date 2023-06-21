@@ -10,7 +10,7 @@ export default function MovieItem({ phimItem }) {
   const [open, setOpen] = React.useState(false);
   const handleToggle = () => setOpen(!open);
   return (
-    <div className="movie-card col-sm-12">
+    <div className="movie-card w-full col-sm-12">
       <NavLink className="card-link" to={`/detail/${phimItem.id}`}>
         <div className="card-content">
           <div className="content-left">

@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <div className="w-full mt-[64px] flex flex-col justify-center items-center">
       <div className="w-[90%]">
-        <Slider />
+        {/* <Slider /> */}
       </div>
       {/* divider  */}
       <div className="w-full my-4 h-[2px] bg-[#ccc]"></div>
@@ -43,7 +43,7 @@ const Home = () => {
           Phim đang chiếu
         </Typography>
       </div>
-      <Row gutter={[16, 16]}>
+      <Row className="w-full" gutter={[16, 16]}>
         {datatest?.map((data, i) => {
           return (
             <Col key={i} xs={24} sm={12} md={8} lg={8}>

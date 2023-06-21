@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "./layout/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Event from "./pages/Event";
+import Event from './pages/event/Event'
 
 import Member from "./pages/Member";
 import Address from "./pages/Address";
