@@ -1,7 +1,7 @@
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Space, Input, Dropdown } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector , useDispatch } from "react-redux";
 import { AiOutlineLogin } from "react-icons/ai";
 import {BiUserCircle } from 'react-icons/bi'
@@ -12,6 +12,18 @@ const Navbar = () => {
   
   const userData = useSelector((state) => state.auth.authData?.user);
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const handleSearchChange = (event) => {
+    const newQuery = event.target.value;
+
+    // Update the query parameter in the URL
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('filmName', newQuery);
+
+    // Push the updated URL to navigate to the new location
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  };
   
   const items = [
     {
@@ -67,7 +79,9 @@ const Navbar = () => {
         </Link>
         {/* search input */}
         <div className="px-8 justify-center flex items-center rounded-lg w-[320px]">
-          <Input className="w-full" placeholder="Search film" />
+          <Input onChange={
+            handleSearchChange
+          } className="w-full" placeholder="Search film" />
         </div>
       </div>
 
